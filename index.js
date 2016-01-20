@@ -25,6 +25,9 @@ module.exports = function (work) {
   function callAll (err) {
     var cbs = callbacks
     callbacks = null
+    // (Paul Kernfeld) this alleviates a mysterious bug that i'm seeing.
+    // I doubt that this is the correct permanent fix.
+    if (cbs === null) return
     for (var i = 0; i < cbs.length; i++) cbs[i](err)
   }
 
